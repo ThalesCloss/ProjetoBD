@@ -22,7 +22,7 @@ public class Conexao {
     private Conexao() throws PersistenciaException{
         try{
             Class.forName("org.postgresql.Driver");
-            connection=DriverManager.getConnection("jdbc.postgresql:localhost:5432/banco", "postgres", "");
+            connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/estoque", "postgres", "123456");
         } catch (ClassNotFoundException ex) {
             throw new PersistenciaException("Driver não localizado", ex);
         } catch (SQLException ex) {

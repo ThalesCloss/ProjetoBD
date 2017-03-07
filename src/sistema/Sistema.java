@@ -23,7 +23,8 @@ public class Sistema {
         try {
             Conexao.getInstance();
         } catch (PersistenciaException ex) {
-            System.out.println(ex.getMessage()+"\n"+ex.getCause());
+            System.out.println(ex.getMessage()+"\n"+ex.getCause().getMessage());
+           
         }
     }
     
