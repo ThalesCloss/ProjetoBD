@@ -5,39 +5,38 @@
  */
 package sistema;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.net.URL;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import negocio.NegocioException;
 import negocio.UsuarioNegocio;
 import persistencia.Conexao;
 import persistencia.PersistenciaException;
-import persistencia.UsuarioDAO;
 import vo.UsuarioVO;
 
 /**
  *
  * @author tcloss
  */
-public class Sistema {
+public class Sistema extends Application{
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws NegocioException {
-        try {
-            Conexao.getInstance();
-            UsuarioNegocio u = new UsuarioNegocio();
-            UsuarioVO usr= new UsuarioVO();
-            usr.setLogin("%");
-            usr.setNome("teste");
-            usr.setSenha("teste");
-            usr.setConfirmSenha("teste");
-            u.inserirUsuario(usr);
-            //u.pesquisarUsuario(usr).forEach(e->System.out.println(e.getLogin()));
-        } catch (PersistenciaException ex) {
-            System.out.println(ex.getMessage()+"\n"+ex.getCause().getMessage());
-           
-        }
+    public static void main(String[] args)  {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(new URL("view/usuario/cadastro.fxml"));
+        Scene sena = new Scene(root);
+        stage.setScene(sena);
+        stage.setTitle("Cad usr");
+        stage.showAndWait();
     }
     
 }
