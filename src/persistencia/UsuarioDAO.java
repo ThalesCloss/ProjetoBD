@@ -7,7 +7,9 @@ package persistencia;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -32,7 +34,7 @@ public class UsuarioDAO extends DAO {
             this.pStatement.setString(2, usuarioVO.getLogin());
             this.pStatement.setString(3, usuarioVO.getSenha());
             this.pStatement.execute();
-            return this.pStatement.getGeneratedKeys().getInt("id_usuario");
+            return this.pStatement.getGeneratedKeys().getInt(1);
         } catch (SQLException ex) {
             throw new PersistenciaException("Erro ao inserir usuário", ex);
         }
@@ -60,13 +62,26 @@ public class UsuarioDAO extends DAO {
             throw new PersistenciaException("Erro ao deletar usuário", ex);
         }
     }
-    public void pesquisarUsuario(UsuarioVO usuarioVO){
-        String sql="SELECT * FROM USUARIOS WHERE ";
-        if(!usuarioVO.getLogin().isEmpty())
-            sql+="login=?";
+    public List<UsuarioVO> pesquisarUsuario(UsuarioVO usuarioVO) throws PersistenciaException{
+        try {
+            String sql="SELECT * FROM USUARIO WHERE ";
+            String where = null;
+            if(!usuarioVO.getLogin().isEmpty())
+                where="login like '"+usuarioVO.getLogin()+"'";
+            if(!usuarioVO.getNome().isEmpty()){
+                if(!where.isEmpty())
+                    where+=" and ";
+                where+="nome like '"+usuarioVO.getNome()+"%'";
+            }
+            sql=sql+where;
+            Statement stmt = this.conexao.getConnection().createStatement();
+            return this.convertResultSetToList(stmt.executeQuery(sql));
+        } catch (SQLException ex) {
+            throw new PersistenciaException("Erro ao realizar a consulta de usuário",ex);
+        }
     }
     
-    private List<UsuarioVO> convertResultSetToList(ResultSet resultSet){
+    private List<UsuarioVO> convertResultSetToList(ResultSet resultSet) throws PersistenciaException{
         List<UsuarioVO> usuarios = new ArrayList<>();
         try {
             while(resultSet.next())
@@ -77,7 +92,7 @@ public class UsuarioDAO extends DAO {
                         resultSet.getString("senha")));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new PersistenciaException("Erro ao percorrer resultados", ex);
         }
         return usuarios;
     }

@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.Conexao;
 import persistencia.PersistenciaException;
+import persistencia.UsuarioDAO;
+import vo.UsuarioVO;
 
 /**
  *
@@ -22,6 +24,13 @@ public class Sistema {
     public static void main(String[] args) {
         try {
             Conexao.getInstance();
+            UsuarioDAO u = new UsuarioDAO(Conexao.getInstance());
+            UsuarioVO usr= new UsuarioVO();
+            usr.setLogin("teste");
+            usr.setNome("teste");
+            usr.setSenha("teste");
+            System.out.println(u.inserirUsuario(usr));
+            u.pesquisarUsuario(usr).forEach(e->System.out.println(e.getLogin()));
         } catch (PersistenciaException ex) {
             System.out.println(ex.getMessage()+"\n"+ex.getCause());
         }
