@@ -23,6 +23,7 @@ public class UsuarioNegocio {
     public UsuarioNegocio() throws NegocioException {
         try {
             this.uDao = new UsuarioDAO(Conexao.getInstance());
+            throw new NegocioException("s");
         } catch (PersistenciaException ex) {
             throw new NegocioException("Erro ao iniciar a persistência do usuário ", ex);
         }
