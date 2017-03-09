@@ -21,15 +21,11 @@ public class Conexao {
     
     private Conexao() throws PersistenciaException{
         try{
-<<<<<<< HEAD
-           // Class.forName("org.postgresql.Driver");
             Class.forName("org.sqlite.JDBC");
             //connection=DriverManager.getConnection("jdbc.postgresql:localhost:5432/banco", "postgres", "");
             connection=DriverManager.getConnection("jdbc:sqlite:sistema.db");
-=======
             Class.forName("org.postgresql.Driver");
             connection=DriverManager.getConnection("jdbc:postgresql://localhost:5432/estoque", "postgres", "123456");
->>>>>>> 981b0a9793d3033f1280c8afbde6c44d597b6881
         } catch (ClassNotFoundException ex) {
             throw new PersistenciaException("Driver não localizado", ex);
         } catch (SQLException ex) {
