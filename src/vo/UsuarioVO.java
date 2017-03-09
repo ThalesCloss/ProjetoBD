@@ -11,8 +11,9 @@ package vo;
  */
 public class UsuarioVO {
     int id;
-    private String nome,login,senha;
+    private String nome,login,senha, confirmSenha;
 
+  
     public UsuarioVO() {
     }
 
@@ -54,4 +55,12 @@ public class UsuarioVO {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+      public String getConfirmSenha() {
+        return confirmSenha;
+    }
+
+    public void setConfirmSenha(String confirmSenha) {
+        this.confirmSenha = confirmSenha;
+    }
+
 }
