@@ -32,7 +32,8 @@ public class Sistema {
             System.out.println(u.inserirUsuario(usr));
             u.pesquisarUsuario(usr).forEach(e->System.out.println(e.getLogin()));
         } catch (PersistenciaException ex) {
-            System.out.println(ex.getMessage()+"\n"+ex.getCause());
+            System.out.println(ex.getMessage()+"\n"+ex.getCause().getMessage());
+           
         }
     }
     
