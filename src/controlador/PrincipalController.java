@@ -14,9 +14,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -25,7 +23,7 @@ import javafx.scene.shape.Rectangle;
 public class PrincipalController implements Initializable{
     
     @FXML
-    private GridPane painel;
+    private Pane painel;
     
     
     
@@ -34,7 +32,9 @@ public class PrincipalController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         
         try {
-            painel.add(FXMLLoader.load(getClass().getResource("../view/usuario/cadastro.fxml")), 0, 1);
+            //());
+            painel.getChildren().add(FXMLLoader.load(getClass().getResource("../view/usuario/cadastro.fxml")));
+            //painel.getChildren().clear();
             //painel.add(FXMLLoader.load(getClass().getResource("../view/login.fxml")), 0, 1);
             
         } catch (IOException ex) {

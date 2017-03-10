@@ -47,7 +47,7 @@
             </Button>
          </children>
       </VBox>
-      <GridPane fx:id="painel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: green;" GridPane.columnIndex="1">
+      <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="TOP">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
         </columnConstraints>
@@ -56,8 +56,8 @@
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="339.0" prefHeight="345.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <HBox prefHeight="345.0" prefWidth="569.0" style="-fx-background-color: blue;" GridPane.rowIndex="1" />
-            <Label text="Lançamentos futuros" />
+            <Label alignment="TOP_LEFT" text="Lançamentos futuros" />
+            <Pane fx:id="painel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1" />
          </children>
          <GridPane.margin>
             <Insets />
