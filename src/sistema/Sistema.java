@@ -11,11 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import negocio.NegocioException;
-import negocio.UsuarioNegocio;
-import persistencia.Conexao;
-import persistencia.PersistenciaException;
-import vo.UsuarioVO;
 
 /**
  *
