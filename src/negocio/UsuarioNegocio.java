@@ -19,6 +19,8 @@ import vo.UsuarioVO;
 public class UsuarioNegocio {
 
     private UsuarioDAO uDao;
+    
+    
 
     public UsuarioNegocio() throws NegocioException {
         try {
@@ -73,10 +75,12 @@ public class UsuarioNegocio {
 
     private void validarUsuario(UsuarioVO usuarioVO) throws NegocioException {
         if (usuarioVO.getLogin().trim().isEmpty() || usuarioVO.getNome().trim().isEmpty() || usuarioVO.getSenha().trim().isEmpty()) {
-            throw new NegocioException("Todos os campos são obrigatórios");
+            throw new NegocioException("Todos os campos são obrigatórios",new Throwable((usuarioVO.getLogin().trim().isEmpty()?"Login não informado\n":"")+
+                                                                                        (usuarioVO.getNome().trim().isEmpty()?"Nome não informado\n":"")+
+                                                                                        (usuarioVO.getSenha().trim().isEmpty()?"Senha não informada\n":"")));
         }
         if (!usuarioVO.getSenha().equals(usuarioVO.getConfirmSenha())) {
-            throw new NegocioException("As senhas informadas não são iguais");
+            throw new NegocioException("As senhas informadas não são iguais", new Throwable("A confirmação de senha digitada é diferente da senha"));
         }
 
     }
