@@ -20,12 +20,12 @@
    <children>
       <VBox id="menu-lateral" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="400.0" prefWidth="151.0">
          <children>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="341.0" text="Fornecedores" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="341.0" text="Fornecedores" textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="244.0" text="Produtos">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#add" prefHeight="35.0" prefWidth="244.0" text="Produtos">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -56,8 +56,8 @@
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="339.0" prefHeight="345.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="TOP_LEFT" text="Lançamentos futuros" />
-            <Pane fx:id="painel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1" />
+            <Label fx:id="lbTelaAtual" alignment="TOP_LEFT" text="Lançamentos futuros" />
+            <Pane fx:id="painel" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
          </children>
          <GridPane.margin>
             <Insets />

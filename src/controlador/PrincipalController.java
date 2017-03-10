@@ -9,12 +9,15 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import utilitarios.Alertas;
 
 /**
  *
@@ -24,22 +27,39 @@ public class PrincipalController implements Initializable{
     
     @FXML
     private Pane painel;
+    @FXML
+    private Label lbTelaAtual;
+    private Parent cadastroUsuario;
+    private FXMLLoader fxControlador;
+    private CadastroUsuarioController cadastroUsuarioCtr;
+    public PrincipalController() {
+        try {
+            fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/cadastro.fxml"));
+            cadastroUsuarioCtr = (CadastroUsuarioController) fxControlador.getController();
+            cadastroUsuario=fxControlador.load();
+        } catch (IOException ex) {
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao carregar a tela", ex.getLocalizedMessage());
+        }
+    }
+    
     
     
     
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
-        try {
-            //());
-            painel.getChildren().add(FXMLLoader.load(getClass().getResource("../view/usuario/cadastro.fxml")));
-            //painel.getChildren().clear();
-            //painel.add(FXMLLoader.load(getClass().getResource("../view/login.fxml")), 0, 1);
-            
-        } catch (IOException ex) {
-            Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            painel.getChildren().clear();
+            painel.getChildren().add(cadastroUsuario);
+       
+    }
+    
+    public void limpar(ActionEvent e){
+        painel.getChildren().clear();
+    }
+    public void add(ActionEvent e){
+                painel.getChildren().clear();
+                lbTelaAtual.setText("Cadastro de Usuário");
+                painel.getChildren().add(cadastroUsuario);
     }
     
     
