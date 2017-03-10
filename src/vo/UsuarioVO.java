@@ -15,6 +15,10 @@ public class UsuarioVO {
 
   
     public UsuarioVO() {
+        nome="";
+        login="";
+        senha="";
+        confirmSenha="";
     }
 
     public UsuarioVO(int id,String nome, String login, String senha) {

@@ -58,15 +58,15 @@ public class UsuarioNegocio {
         if (!usuarioVO.getLogin().trim().isEmpty() && !usuarioVO.getSenha().trim().isEmpty()) {
             try {
                 if (!this.uDao.pesquisarUsuario(usuarioVO).get(0).getSenha().equals(usuarioVO.getSenha())) {
-                    throw new NegocioException("Senha inválida");
+                    throw new NegocioException("Senha inválida",new Throwable("A senha informada não confere com a senha do usuário"));
                 }
             } catch (PersistenciaException ex) {
                 throw new NegocioException("Não foi possível localizar o usuário", ex.getCause());
             } catch(IndexOutOfBoundsException ex){
-                throw new NegocioException("Nenhum usuário encontrado");
+                throw new NegocioException("Nenhum usuário encontrado", new Throwable("O usuário informado não esta cadastrado no sistema"));
             }
         } else {
-            throw new NegocioException("Informe o login e senha para entrar no sistema");
+            throw new NegocioException("Informe o login e senha para entrar no sistema",new Throwable("Os campos login e/ou senha devem ser preenchidos"));
         }
         return true;
     }
