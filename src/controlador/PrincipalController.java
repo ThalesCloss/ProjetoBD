@@ -41,7 +41,6 @@ public class PrincipalController implements Initializable{
             fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/cadastro.fxml"));
             cadastroUsuario=fxControlador.load();
             cadastroUsuarioCtr = (CadastroUsuarioController) fxControlador.getController();
-            System.out.println(cadastroUsuarioCtr.toString());
             
             fxControlador=new FXMLLoader(getClass().getResource("../view/usuario/lista.fxml"));
             listaUsuario=fxControlador.load();
