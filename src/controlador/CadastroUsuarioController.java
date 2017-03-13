@@ -99,4 +99,12 @@ public class CadastroUsuarioController implements Initializable {
     public void setPrincipal(Parent principal) {
         this.principal = principal;
     }
+
+    public UsuarioVO getUsuarioVO() {
+        return usuarioVO;
+    }
+
+    public void setUsuarioVO(UsuarioVO usuarioVO) {
+        this.usuarioVO = usuarioVO;
+    }
 }

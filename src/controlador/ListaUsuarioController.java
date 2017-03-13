@@ -81,7 +81,7 @@ public class ListaUsuarioController implements Initializable {
 
     @FXML
     public void btEditarOnAction(ActionEvent ev) {
-
+        tbUsuarios.getSelectionModel();
     }
     
     @FXML 

@@ -47,10 +47,7 @@ public class PrincipalController implements Initializable{
             listaUsuario=fxControlador.load();
             listaUsuarioCtr=fxControlador.getController();
            
-            listaUsuarioCtr.setCadastro(cadastroUsuario);
-            listaUsuarioCtr.setPainelBase(painel);
-            cadastroUsuarioCtr.setPrincipal(listaUsuario);
-            cadastroUsuarioCtr.setPainelBase(painel);
+            
             
         } catch (IOException ex) {
             System.out.println(ex);
@@ -64,6 +61,9 @@ public class PrincipalController implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+            listaUsuarioCtr.setCadastro(cadastroUsuario);
+            listaUsuarioCtr.setPainelBase(painel);
+            cadastroUsuarioCtr.setPrincipal(listaUsuario);
             cadastroUsuarioCtr.setPainelBase(painel);
        
     }
