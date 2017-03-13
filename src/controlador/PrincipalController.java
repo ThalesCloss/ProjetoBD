@@ -35,6 +35,7 @@ public class PrincipalController implements Initializable{
     private Parent cadastroUsuario,listaUsuario;
     private FXMLLoader fxControlador;
     private CadastroUsuarioController cadastroUsuarioCtr;
+    private ListaUsuarioController listaUsuarioCtr;
     
     public PrincipalController() {
         try {
@@ -44,7 +45,15 @@ public class PrincipalController implements Initializable{
             
             fxControlador=new FXMLLoader(getClass().getResource("../view/usuario/lista.fxml"));
             listaUsuario=fxControlador.load();
+            listaUsuarioCtr=fxControlador.getController();
+           
+            listaUsuarioCtr.setCadastro(cadastroUsuario);
+            listaUsuarioCtr.setPainelBase(painel);
+            cadastroUsuarioCtr.setPrincipal(listaUsuario);
+            cadastroUsuarioCtr.setPainelBase(painel);
+            
         } catch (IOException ex) {
+            System.out.println(ex);
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao carregar a tela", ex.getLocalizedMessage());
         }
     }
@@ -60,6 +69,7 @@ public class PrincipalController implements Initializable{
     }
     
     public void limpar(ActionEvent e){
+        
         painel.getChildren().clear();
         painel.getChildren().add(listaUsuario);
     }
