@@ -5,6 +5,8 @@
  */
 package utilitarios;
 
+import com.sun.javafx.collections.ElementObservableListDecorator;
+import java.util.Collection;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -19,12 +21,23 @@ public class Alertas {
     private static Alert msg;
     
     public static Optional<ButtonType> exibirAlerta(AlertType tipo, String titulo, String cabecalho, String corpo){
+        return createAlert(tipo, titulo, cabecalho, corpo).showAndWait();
+    }
+    public static Optional<ButtonType> exibirAlerta(AlertType tipo, String titulo, String cabecalho, String corpo,Collection<ButtonType> botoes){
+        return  createAlert(tipo, titulo, cabecalho, corpo, botoes).showAndWait();
+    }
+    private static Alert createAlert(AlertType tipo, String titulo, String cabecalho, String corpo){
         msg=new Alert(tipo);
         msg.setTitle(titulo);
         msg.setHeaderText(cabecalho);
         msg.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        
         msg.setContentText(corpo);
-        return msg.showAndWait();
+        return msg;
+    }
+    private static Alert createAlert(AlertType tipo, String titulo, String cabecalho, String corpo,Collection<ButtonType> botoes){
+        msg = createAlert(tipo, titulo, cabecalho, corpo);
+        msg.getButtonTypes().clear();
+        msg.getButtonTypes().addAll(botoes);
+        return msg;
     }
 }

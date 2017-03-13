@@ -5,6 +5,7 @@
  */
 package negocio;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.Conexao;
@@ -83,6 +84,15 @@ public class UsuarioNegocio {
             throw new NegocioException("As senhas informadas não são iguais", new Throwable("A confirmação de senha digitada é diferente da senha"));
         }
 
+    }
+    public List<UsuarioVO> todosUsuarios() throws NegocioException{
+        try {
+            UsuarioVO u=new UsuarioVO();
+            u.setLogin("%");
+            return uDao.pesquisarUsuario(u);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Erro ao localizar usuários", ex);
+        }
     }
 
 }

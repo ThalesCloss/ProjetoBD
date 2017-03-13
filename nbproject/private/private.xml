@@ -3,17 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/sistema/Sistema.java</file>
+            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/CadastroUsuarioController.java</file>
+            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/PrincipalController.java</file>
             <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/persistencia/UsuarioDAO.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/persistencia/Conexao.java</file>
-=======
-            <file>file:/C:/Users/aluno/Documents/bd/ProjetoBD/src/controlador/CadastroUsuarioController.java</file>
-            <file>file:/C:/Users/aluno/Documents/bd/ProjetoBD/src/view/login.fxml</file>
-            <file>file:/C:/Users/aluno/Documents/bd/ProjetoBD/src/controlador/LoginController.java</file>
-            <file>file:/C:/Users/aluno/Documents/bd/ProjetoBD/src/negocio/UsuarioNegocio.java</file>
-            <file>file:/C:/Users/aluno/Documents/bd/ProjetoBD/src/sistema/Sistema.java</file>
->>>>>>> 86bc838939e10ba75d099c951fd6ab51f008f947
+            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/negocio/UsuarioNegocio.java</file>
+            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/LoginController.java</file>
+            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/ListaUsuarioController.java</file>
         </group>
     </open-files>
 </project-private>
