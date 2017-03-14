@@ -35,11 +35,11 @@ public class ListaProdutoController implements Initializable{
              TableColumn colunaDescricao = (TableColumn) tbProdutos.getColumns().get(0);
             TableColumn colunaMarca = (TableColumn) tbProdutos.getColumns().get(1);
             TableColumn colunaPreco = (TableColumn) tbProdutos.getColumns().get(2);
-            TableColumn colunaQtd= (TableColumn) colunaPreco.getColumns().get(0);
+            //TableColumn colunaQtd= (TableColumn) colunaPreco.getColumns().get(0);
             colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
             colunaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
             colunaPreco.setCellFactory(new PropertyValueFactory<>("vlrUnitarioVenda"));
-            colunaQtd.setCellFactory(new PropertyValueFactory<>("qtdEstoque"));
+            //colunaQtd.setCellFactory(new PropertyValueFactory<>("qtdEstoque"));
             tbProdutos.setItems(FXCollections.observableArrayList(pNegocio.todos()));
         } catch (NegocioException ex) {
             Logger.getLogger(ListaProdutoController.class.getName()).log(Level.SEVERE, null, ex);
