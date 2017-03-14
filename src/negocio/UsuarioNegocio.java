@@ -27,7 +27,7 @@ public class UsuarioNegocio {
         try {
             this.uDao = new UsuarioDAO(Conexao.getInstance());
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Erro ao iniciar a persistência do usuário ", ex);
+            throw new NegocioException("Erro ao iniciar a persistência do usuário ", ex.getCause());
         }
     }
 

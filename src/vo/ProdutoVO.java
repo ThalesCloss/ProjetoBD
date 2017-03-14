@@ -15,6 +15,12 @@ public class ProdutoVO {
     private int qtdEstoque;
     private double vlrUnitarioVenda,vlrUnitarioCompra;
 
+    public ProdutoVO() {
+        this.descricao="";
+        this.marca="";
+    }
+    
+
     public ProdutoVO(int idProduto, String descricao, String marca, int qtdEstoque, double vlrUnitarioVenda, double vlrUnitarioCompra) {
         this.idProduto = idProduto;
         this.descricao = descricao;

@@ -29,7 +29,7 @@ import vo.UsuarioVO;
  * @author tcloss
  */
 public class CadastroUsuarioController implements Initializable {
-
+    
     private UsuarioNegocio uNegocio;
     private UsuarioVO usuarioVO;
     @FXML
@@ -40,34 +40,34 @@ public class CadastroUsuarioController implements Initializable {
     private PasswordField pfSenha;
     @FXML
     private PasswordField pfConfSenha;
-
+    
     private Pane painelBase;
     private Parent principal;
-
+    
     public Pane getPainelBase() {
         return painelBase;
     }
-
+    
     public void setPainelBase(Pane painelBase) {
         this.painelBase = painelBase;
     }
-
+    
     public CadastroUsuarioController() {
         try {
             uNegocio = new UsuarioNegocio();
+            usuarioVO = new UsuarioVO();
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao iniciar a persistência do usuário", ex.getLocalizedMessage());
         }
     }
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+       
     }
-
+    
     @FXML
     public void btGravarOnAction(ActionEvent evt) {
-        usuarioVO = new UsuarioVO();
         usuarioVO.setLogin(tfLogin.getText());
         usuarioVO.setNome(tfNome.getText());
         usuarioVO.setSenha(pfSenha.getText());
@@ -76,14 +76,21 @@ public class CadastroUsuarioController implements Initializable {
         bt.add(new ButtonType("Sim", ButtonBar.ButtonData.YES));
         bt.add(new ButtonType("Não", ButtonBar.ButtonData.NO));
         try {
-            uNegocio.inserirUsuario(usuarioVO);
-            Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Inserir novo", "Usuário cadastrado com sucesso", "Deseja cadastrar outro usuário", bt);
+            if (usuarioVO.getId() == 0) {
+                uNegocio.inserirUsuario(usuarioVO);
+            } else {
+                uNegocio.alterarUsuario(usuarioVO);
+            }
+            if(Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Gravação", "Usuário gravado com sucesso", "Deseja cadastrar outro usuário", bt).get()==ButtonType.NO)
+            {
+                
+            }
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
         }
-
+        
     }
-
+    
     @FXML
     public void btCancelarOnAction(ActionEvent evt) {
         usuarioVO = null;
@@ -91,20 +98,27 @@ public class CadastroUsuarioController implements Initializable {
         this.painelBase.getChildren().clear();
         this.painelBase.getChildren().add(this.principal);
     }
-
+    
     public Parent getPrincipal() {
         return principal;
     }
-
+    
     public void setPrincipal(Parent principal) {
         this.principal = principal;
     }
-
+    
     public UsuarioVO getUsuarioVO() {
         return usuarioVO;
     }
-
+    
     public void setUsuarioVO(UsuarioVO usuarioVO) {
         this.usuarioVO = usuarioVO;
+         if(usuarioVO!=null && usuarioVO.getId()!=0)
+        {
+            tfLogin.setText(usuarioVO.getLogin());
+            tfNome.setText(usuarioVO.getNome());
+            pfSenha.setText(usuarioVO.getSenha());
+            pfConfSenha.setText(usuarioVO.getSenha());
+        }
     }
 }

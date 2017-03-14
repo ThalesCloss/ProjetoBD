@@ -20,12 +20,12 @@
    <children>
       <VBox id="menu-lateral" alignment="TOP_CENTER" maxWidth="-Infinity" prefHeight="400.0" prefWidth="151.0">
          <children>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#limpar" prefHeight="35.0" prefWidth="341.0" text="Fornecedores" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="341.0" text="Fornecedores" textFill="WHITE">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#add" prefHeight="35.0" prefWidth="244.0" text="Produtos">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btProdutoOnAction" prefHeight="35.0" prefWidth="244.0" text="Produtos">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -40,7 +40,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="35.0" prefWidth="244.0" text="Usuários">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btUsuarioOnAction" prefHeight="35.0" prefWidth="244.0" text="Usuários">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
@@ -52,12 +52,10 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="67.0" minHeight="55.0" prefHeight="55.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="1.7976931348623157E308" minHeight="339.0" prefHeight="345.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="lbTelaAtual" alignment="TOP_LEFT" text="Lançamentos futuros" />
-            <Pane fx:id="painel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" GridPane.rowIndex="1" />
+            <Pane fx:id="painel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" />
          </children>
          <GridPane.margin>
             <Insets />

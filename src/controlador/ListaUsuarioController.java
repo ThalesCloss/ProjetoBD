@@ -40,6 +40,12 @@ public class ListaUsuarioController implements Initializable {
     
     private Parent cadastro;
     private Pane painelBase;
+    
+    private CadastroUsuarioController cadUsrCtrl;
+
+    public void setCadUsrCtrl(CadastroUsuarioController cadUsrCtrl) {
+        this.cadUsrCtrl = cadUsrCtrl;
+    }
 
     public Pane getPainelBase() {
         return painelBase;
@@ -81,7 +87,9 @@ public class ListaUsuarioController implements Initializable {
 
     @FXML
     public void btEditarOnAction(ActionEvent ev) {
-        tbUsuarios.getSelectionModel();
+        this.cadUsrCtrl.setUsuarioVO(tbUsuarios.getSelectionModel().getSelectedItem());
+        this.painelBase.getChildren().clear();
+        this.painelBase.getChildren().add(cadastro);
     }
     
     @FXML 

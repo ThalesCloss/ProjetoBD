@@ -42,7 +42,7 @@ public class UsuarioDAO extends DAO {
     
     public void alterarUsuario(UsuarioVO usuarioVO) throws PersistenciaException{
         try {
-            this.pStatement=this.conexao.getConnection().prepareStatement("UPDATE USUARIO nome=?,login=?,senha=? WHERE id_usuario=?");
+            this.pStatement=this.conexao.getConnection().prepareStatement("UPDATE USUARIO SET nome=?,login=?,senha=? WHERE id_usuario=?");
             this.pStatement.setString(1, usuarioVO.getNome());
             this.pStatement.setString(2, usuarioVO.getLogin());
             this.pStatement.setString(3, usuarioVO.getSenha());

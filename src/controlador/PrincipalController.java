@@ -9,17 +9,15 @@ package controlador;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import utilitarios.Alertas;
+import vo.UsuarioVO;
 
 
 /**
@@ -31,8 +29,8 @@ public class PrincipalController implements Initializable{
     @FXML
     private Pane painel;
     @FXML
-    private Label lbTelaAtual;
-    private Parent cadastroUsuario,listaUsuario;
+    
+    private Parent cadastroUsuario,listaUsuario,listaProduto;
     private FXMLLoader fxControlador;
     private CadastroUsuarioController cadastroUsuarioCtr;
     private ListaUsuarioController listaUsuarioCtr;
@@ -46,7 +44,10 @@ public class PrincipalController implements Initializable{
             fxControlador=new FXMLLoader(getClass().getResource("../view/usuario/lista.fxml"));
             listaUsuario=fxControlador.load();
             listaUsuarioCtr=fxControlador.getController();
-           
+            listaUsuarioCtr.setCadUsrCtrl(cadastroUsuarioCtr);
+            
+            fxControlador=new FXMLLoader(getClass().getResource("../view/produto/lista.fxml"));
+            listaProduto=fxControlador.load();
             
             
         } catch (IOException ex) {
@@ -68,17 +69,16 @@ public class PrincipalController implements Initializable{
        
     }
     
-    public void limpar(ActionEvent e){
-        
-        painel.getChildren().clear();
-        painel.getChildren().add(listaUsuario);
+    public void btUsuarioOnAction(ActionEvent e){        
+        carregarTela(listaUsuario);
     }
-    public void add(ActionEvent e){
-                cadastroUsuarioCtr.setPrincipal(listaUsuario);
-                painel.getChildren().clear();
-                lbTelaAtual.setText("Cadastro de Usuário");
-                painel.getChildren().add(cadastroUsuario);
-            
+    public void btProdutoOnAction(ActionEvent e){        
+        carregarTela(listaProduto);
+    }
+    
+    private void carregarTela(Parent tela){
+        painel.getChildren().clear();
+        painel.getChildren().add(tela);
     }
     
     

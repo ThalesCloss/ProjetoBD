@@ -1,30 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="324.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ListaUsuarioController">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ListaUsuarioController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="213.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="315.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="tbUsuarios" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tbUsuarios" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
         <columns>
           <TableColumn editable="false" prefWidth="232.0" text="Login" />
           <TableColumn prefWidth="321.0" text="Nome" />
         </columns>
       </TableView>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
         <items>
             <Button mnemonicParsing="false" onAction="#btNovoOnAction" text="Novo" />
           <Button fx:id="btEditar" mnemonicParsing="false" onAction="#btEditarOnAction" text="Editar" />
             <Button fx:id="btExcluir" mnemonicParsing="false" onAction="#btExcluirOnAction" text="Excluir" />
         </items>
       </ToolBar>
+      <Label text="Usuarios cadastrados">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </GridPane>
