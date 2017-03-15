@@ -62,6 +62,7 @@ public class PrincipalController implements Initializable {
 //            listaUsuarioCtr.setPainelBase(painel);
 //            cadastroUsuarioCtr.setPrincipal(listaUsuario);
         //cadastroUsuarioCtr.setPainelBase(painel);
+        painel.autosize();
         sPainel = painel;
 
     }
@@ -93,12 +94,9 @@ public class PrincipalController implements Initializable {
         carregarTela(cadastroProduto);
     }
     
-    public static void limparTextField(){
+    public  void limparTextField(){
         
     }
     
-    private static void limpar(Parent no){
-        
-    }
 
 }

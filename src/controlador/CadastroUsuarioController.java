@@ -83,7 +83,7 @@ public class CadastroUsuarioController implements Initializable {
     @FXML
     public void btCancelarOnAction(ActionEvent evt) {
         usuarioVO = null;
-        PrincipalController.limparTextField();
+        //PrincipalController.limparTextField();
        // PrincipalController.abrirListaUsuario();
     }
     
