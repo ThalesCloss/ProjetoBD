@@ -5,7 +5,6 @@
  */
 package controlador;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -13,73 +12,93 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Pane;
 import utilitarios.Alertas;
-import vo.UsuarioVO;
-
 
 /**
  *
  * @author tcloss
  */
-public class PrincipalController implements Initializable{
-    
+public class PrincipalController implements Initializable {
+
     @FXML
     private Pane painel;
+    private static Pane sPainel;
     @FXML
-    
-    private Parent cadastroUsuario,listaUsuario,listaProduto;
+    private static Parent cadastroUsuario, listaUsuario, listaProduto,cadastroProduto;
     private FXMLLoader fxControlador;
-    private CadastroUsuarioController cadastroUsuarioCtr;
-    private ListaUsuarioController listaUsuarioCtr;
-    
+    public static CadastroUsuarioController cadastroUsuarioCtr;
+    private static ListaUsuarioController listaUsuarioCtr;
+
     public PrincipalController() {
         try {
             fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/cadastro.fxml"));
-            cadastroUsuario=fxControlador.load();
+            cadastroUsuario = fxControlador.load();
             cadastroUsuarioCtr = (CadastroUsuarioController) fxControlador.getController();
+
+            fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/lista.fxml"));
+            listaUsuario = fxControlador.load();
+            listaUsuarioCtr = fxControlador.getController();
+
+            fxControlador = new FXMLLoader(getClass().getResource("../view/produto/lista.fxml"));
+            listaProduto = fxControlador.load();
             
-            fxControlador=new FXMLLoader(getClass().getResource("../view/usuario/lista.fxml"));
-            listaUsuario=fxControlador.load();
-            listaUsuarioCtr=fxControlador.getController();
-            listaUsuarioCtr.setCadUsrCtrl(cadastroUsuarioCtr);
+            fxControlador=new FXMLLoader(getClass().getResource("../view/produto/cadastro.fxml"));
+            cadastroProduto=fxControlador.load();
             
-            fxControlador=new FXMLLoader(getClass().getResource("../view/produto/lista.fxml"));
-            listaProduto=fxControlador.load();
-            
-            
+
         } catch (IOException ex) {
             System.out.println(ex);
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao carregar a tela", ex.getLocalizedMessage());
         }
     }
-    
-    
-    
-    
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-            listaUsuarioCtr.setCadastro(cadastroUsuario);
-            listaUsuarioCtr.setPainelBase(painel);
-            cadastroUsuarioCtr.setPrincipal(listaUsuario);
-            cadastroUsuarioCtr.setPainelBase(painel);
-       
+//            listaUsuarioCtr.setCadastro(cadastroUsuario);
+//            listaUsuarioCtr.setPainelBase(painel);
+//            cadastroUsuarioCtr.setPrincipal(listaUsuario);
+        //cadastroUsuarioCtr.setPainelBase(painel);
+        sPainel = painel;
+
     }
-    
-    public void btUsuarioOnAction(ActionEvent e){        
-        carregarTela(listaUsuario);
+
+    public void btUsuarioOnAction(ActionEvent e) {
+        abrirListaUsuario();
     }
-    public void btProdutoOnAction(ActionEvent e){        
+
+    public void btProdutoOnAction(ActionEvent e) {
         carregarTela(listaProduto);
     }
-    
-    private void carregarTela(Parent tela){
-        painel.getChildren().clear();
-        painel.getChildren().add(tela);
+
+    private static void carregarTela(Parent tela) {
+        sPainel.getChildren().clear();
+        sPainel.getChildren().add(tela);
+    }
+
+    public static void abrirListaUsuario() {
+        listaUsuarioCtr.preencherTabela();
+        carregarTela(listaUsuario);
+    }
+    public static void abrirListaProduto(){
+        carregarTela(listaProduto);
+    }
+    public static void abrirCadastroUsuario(){
+        carregarTela(cadastroUsuario);
+    }
+    public static void abrirCadastroProduto(){
+        carregarTela(cadastroProduto);
     }
     
+    public static void limparTextField(){
+        
+    }
     
+    private static void limpar(Parent no){
+        
+    }
+
 }

@@ -32,36 +32,11 @@ public class ListaUsuarioController implements Initializable {
 
     @FXML
     private TableView<UsuarioVO> tbUsuarios;
-    
+
     @FXML
     private Button btEditar, btExcluir;
 
     private UsuarioNegocio uNegocio;
-    
-    private Parent cadastro;
-    private Pane painelBase;
-    
-    private CadastroUsuarioController cadUsrCtrl;
-
-    public void setCadUsrCtrl(CadastroUsuarioController cadUsrCtrl) {
-        this.cadUsrCtrl = cadUsrCtrl;
-    }
-
-    public Pane getPainelBase() {
-        return painelBase;
-    }
-
-    public void setPainelBase(Pane painelBase) {
-        this.painelBase = painelBase;
-    }
-    
-    public Parent getCadastro() {
-        return cadastro;
-    }
-
-    public void setCadastro(Parent cadastro) {
-        this.cadastro = cadastro;
-    }
 
     public ListaUsuarioController() {
         try {
@@ -73,6 +48,10 @@ public class ListaUsuarioController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        preencherTabela();
+    }
+    
+    public void preencherTabela(){
         try {
             TableColumn colunaLogin = (TableColumn) tbUsuarios.getColumns().get(0);
             TableColumn colunaNome = (TableColumn) tbUsuarios.getColumns().get(1);
@@ -87,21 +66,19 @@ public class ListaUsuarioController implements Initializable {
 
     @FXML
     public void btEditarOnAction(ActionEvent ev) {
-        this.cadUsrCtrl.setUsuarioVO(tbUsuarios.getSelectionModel().getSelectedItem());
-        this.painelBase.getChildren().clear();
-        this.painelBase.getChildren().add(cadastro);
+        PrincipalController.cadastroUsuarioCtr.setUsuarioVO(tbUsuarios.getSelectionModel().getSelectedItem());
+        PrincipalController.abrirCadastroUsuario();
     }
-    
-    @FXML 
-    public void btNovoOnAction(ActionEvent e){
-        painelBase.getChildren().clear();
-        painelBase.getChildren().add(cadastro);
+
+    @FXML
+    public void btNovoOnAction(ActionEvent e) {
+        PrincipalController.abrirCadastroUsuario();
     }
 
     @FXML
     public void btExcluirOnAction(ActionEvent e) {
         try {
-            if (Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Confirmar exclusão?", "Confirmar Exclusão?", "O cadastro será excluído e não pode ser recuperado, deseja continuar?").get() == ButtonType.OK) {
+            if (Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Confirmar exclusão?", "Confirmar Exclusão?", "O cadastro será excluído e não pode ser recuperado, deseja continuar?",Alertas.SIM_NAO_BOTOES).get() == ButtonType.YES) {
                 uNegocio.deletarUsuario(tbUsuarios.getSelectionModel().getSelectedItem());
                 tbUsuarios.getItems().remove(tbUsuarios.getSelectionModel().getSelectedItem());
             }

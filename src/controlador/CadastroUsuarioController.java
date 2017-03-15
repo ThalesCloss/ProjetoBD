@@ -41,21 +41,11 @@ public class CadastroUsuarioController implements Initializable {
     @FXML
     private PasswordField pfConfSenha;
     
-    private Pane painelBase;
-    private Parent principal;
-    
-    public Pane getPainelBase() {
-        return painelBase;
-    }
-    
-    public void setPainelBase(Pane painelBase) {
-        this.painelBase = painelBase;
-    }
     
     public CadastroUsuarioController() {
         try {
             uNegocio = new UsuarioNegocio();
-            usuarioVO = new UsuarioVO();
+            
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", "Erro ao iniciar a persistência do usuário", ex.getLocalizedMessage());
         }
@@ -68,22 +58,21 @@ public class CadastroUsuarioController implements Initializable {
     
     @FXML
     public void btGravarOnAction(ActionEvent evt) {
+        if(usuarioVO==null)
+            usuarioVO=new UsuarioVO();
         usuarioVO.setLogin(tfLogin.getText());
         usuarioVO.setNome(tfNome.getText());
         usuarioVO.setSenha(pfSenha.getText());
         usuarioVO.setConfirmSenha(pfConfSenha.getText());
-        Collection<ButtonType> bt = new ArrayList<>();
-        bt.add(new ButtonType("Sim", ButtonBar.ButtonData.YES));
-        bt.add(new ButtonType("Não", ButtonBar.ButtonData.NO));
         try {
             if (usuarioVO.getId() == 0) {
                 uNegocio.inserirUsuario(usuarioVO);
             } else {
                 uNegocio.alterarUsuario(usuarioVO);
             }
-            if(Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Gravação", "Usuário gravado com sucesso", "Deseja cadastrar outro usuário", bt).get()==ButtonType.NO)
+            if(Alertas.exibirAlerta(Alert.AlertType.CONFIRMATION, "Gravação", "Usuário gravado com sucesso", "Deseja cadastrar outro usuário", Alertas.SIM_NAO_BOTOES).get()==ButtonType.NO)
             {
-                
+                PrincipalController.abrirListaUsuario();
             }
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
@@ -94,19 +83,11 @@ public class CadastroUsuarioController implements Initializable {
     @FXML
     public void btCancelarOnAction(ActionEvent evt) {
         usuarioVO = null;
-        System.out.println(painelBase.toString());
-        this.painelBase.getChildren().clear();
-        this.painelBase.getChildren().add(this.principal);
+        PrincipalController.limparTextField();
+       // PrincipalController.abrirListaUsuario();
     }
     
-    public Parent getPrincipal() {
-        return principal;
-    }
-    
-    public void setPrincipal(Parent principal) {
-        this.principal = principal;
-    }
-    
+        
     public UsuarioVO getUsuarioVO() {
         return usuarioVO;
     }
