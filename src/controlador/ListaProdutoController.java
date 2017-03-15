@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -47,6 +48,15 @@ public class ListaProdutoController implements Initializable{
             Logger.getLogger(ListaProdutoController.class.getName()).log(Level.SEVERE, null, ex);
         }
            
+    }
+    
+    @FXML
+    public void btNovoOnAction(ActionEvent e){
+        PrincipalController.abrirCadastroProduto();
+    }
+    public void btEditarOnAction(ActionEvent e){
+        PrincipalController.cadastroProdutoCtr.setProdutoVO(tbProdutos.getSelectionModel().getSelectedItem());
+        PrincipalController.abrirCadastroProduto();
     }
     
     

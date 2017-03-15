@@ -12,9 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import utilitarios.Alertas;
 
@@ -28,10 +28,11 @@ public class PrincipalController implements Initializable {
     private Pane painel;
     private static Pane sPainel;
     @FXML
-    private static Parent cadastroUsuario, listaUsuario, listaProduto,cadastroProduto;
+    private static Parent cadastroUsuario, listaUsuario, listaProduto, cadastroProduto;
     private FXMLLoader fxControlador;
     public static CadastroUsuarioController cadastroUsuarioCtr;
     private static ListaUsuarioController listaUsuarioCtr;
+    public static CadastroProdutoController cadastroProdutoCtr;
 
     public PrincipalController() {
         try {
@@ -45,10 +46,10 @@ public class PrincipalController implements Initializable {
 
             fxControlador = new FXMLLoader(getClass().getResource("../view/produto/lista.fxml"));
             listaProduto = fxControlador.load();
-            
-            fxControlador=new FXMLLoader(getClass().getResource("../view/produto/cadastro.fxml"));
-            cadastroProduto=fxControlador.load();
-            
+
+            fxControlador = new FXMLLoader(getClass().getResource("../view/produto/cadastro.fxml"));
+            cadastroProduto = fxControlador.load();
+            cadastroProdutoCtr=fxControlador.getController();
 
         } catch (IOException ex) {
             System.out.println(ex);
@@ -84,19 +85,31 @@ public class PrincipalController implements Initializable {
         listaUsuarioCtr.preencherTabela();
         carregarTela(listaUsuario);
     }
-    public static void abrirListaProduto(){
+
+    public static void abrirListaProduto() {
         carregarTela(listaProduto);
     }
-    public static void abrirCadastroUsuario(){
+
+    public static void abrirCadastroUsuario() {
         carregarTela(cadastroUsuario);
     }
-    public static void abrirCadastroProduto(){
+
+    public static void abrirCadastroProduto() {
         carregarTela(cadastroProduto);
     }
-    
-    public  void limparTextField(){
-        
-    }
-    
 
+    public static void limparTextField() {
+        limpar(sPainel);
+    }
+
+    private static void limpar(Parent limpar) {
+        limpar.getChildrenUnmodifiable().forEach(action -> {
+            if (action instanceof TextField) {
+                ((TextField) action).setText("");
+            } else if (action instanceof Parent) {
+                limpar((Parent) action);
+            }
+        }
+        );
+    }
 }
