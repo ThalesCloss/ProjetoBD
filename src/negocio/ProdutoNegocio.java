@@ -75,8 +75,13 @@ public class ProdutoNegocio {
             throw new NegocioException(exception, new Throwable(causa));
         
     }
-    public List<ProdutoVO> todos() throws PersistenciaException{
-        return produtoDAO.listarTodos();
+    public List<ProdutoVO> todos() throws  NegocioException{
+        try {
+            return produtoDAO.listarTodos();
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Erro ao carregar produtos", e.getCause());
+        }
+        
     }
     
 }

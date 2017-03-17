@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import utilitarios.Alertas;
 
@@ -24,8 +25,10 @@ import utilitarios.Alertas;
  */
 public class PrincipalController implements Initializable {
 
+
+    
     @FXML
-    private Pane painel;
+    private GridPane painel;
     private static Pane sPainel;
     @FXML
     private static Parent cadastroUsuario, listaUsuario, listaProduto, cadastroProduto;
@@ -33,7 +36,7 @@ public class PrincipalController implements Initializable {
     public static CadastroUsuarioController cadastroUsuarioCtr;
     private static ListaUsuarioController listaUsuarioCtr;
     public static CadastroProdutoController cadastroProdutoCtr;
-
+    public static ListaProdutoController listaProdutoCtr;
     public PrincipalController() {
         try {
             fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/cadastro.fxml"));
@@ -46,7 +49,8 @@ public class PrincipalController implements Initializable {
 
             fxControlador = new FXMLLoader(getClass().getResource("../view/produto/lista.fxml"));
             listaProduto = fxControlador.load();
-
+            listaProdutoCtr=fxControlador.getController();
+            
             fxControlador = new FXMLLoader(getClass().getResource("../view/produto/cadastro.fxml"));
             cadastroProduto = fxControlador.load();
             cadastroProdutoCtr=fxControlador.getController();
@@ -59,13 +63,7 @@ public class PrincipalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//            listaUsuarioCtr.setCadastro(cadastroUsuario);
-//            listaUsuarioCtr.setPainelBase(painel);
-//            cadastroUsuarioCtr.setPrincipal(listaUsuario);
-        //cadastroUsuarioCtr.setPainelBase(painel);
-        painel.autosize();
         sPainel = painel;
-
     }
 
     public void btUsuarioOnAction(ActionEvent e) {
@@ -73,7 +71,7 @@ public class PrincipalController implements Initializable {
     }
 
     public void btProdutoOnAction(ActionEvent e) {
-        carregarTela(listaProduto);
+        abrirListaProduto();
     }
 
     private static void carregarTela(Parent tela) {
@@ -87,6 +85,7 @@ public class PrincipalController implements Initializable {
     }
 
     public static void abrirListaProduto() {
+        listaProdutoCtr.atualizarTabela();
         carregarTela(listaProduto);
     }
 
