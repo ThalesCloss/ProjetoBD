@@ -7,10 +7,15 @@ package controlador;
 
 import java.net.URL;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ResourceBundle;
+import javafx.collections.MapChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import utilitarios.Alertas;
 import vo.ProdutoVO;
 
 /**
@@ -41,5 +46,25 @@ public class CadastroProdutoController implements Initializable {
         tfVlrCompra.setText(nf.format(produtoVO.getVlrUnitarioCompra()));
         tfVlrVenda.setText(nf.format(produtoVO.getVlrUnitarioVenda()));
         this.produtoVO=produtoVO;
+    }
+    
+    public void btGravarOnAction(ActionEvent e){
+        try {
+            NumberFormat nf = NumberFormat.getCurrencyInstance();
+            if(produtoVO==null)
+                produtoVO=new ProdutoVO();
+            produtoVO.setDescricao(tfDescricao.getText());
+            produtoVO.setMarca(tfMarca.getText());
+            produtoVO.setQtdEstoque(Integer.parseInt(tfQtd.getText()));
+            produtoVO.setVlrUnitarioCompra(nf.parse(tfVlrCompra.getText()).doubleValue());
+            produtoVO.setVlrUnitarioVenda(nf.parse(tfVlrVenda.getText()).doubleValue());
+        } catch (ParseException ex) {
+            System.err.println(ex);
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Valores", "Valores incorretos", "Confira os valores de venda e de compra "+ex.getMessage());
+        }
+        catch(NumberFormatException ex){
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Quantidade", "Valores incorretos", "Confira o valor da quantidade");
+        }
+        
     }
 }

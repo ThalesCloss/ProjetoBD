@@ -21,11 +21,11 @@ import javafx.scene.layout.Region;
 public class Alertas {
     private static Alert msg;
     public static Collection<ButtonType> SIM_NAO_BOTOES;
-    static {{
+    static {
         SIM_NAO_BOTOES=new ArrayList<>();
         SIM_NAO_BOTOES.add(ButtonType.YES);
-        SIM_NAO_BOTOES.add(ButtonType.NO);
-    }};
+        SIM_NAO_BOTOES.add(ButtonType.NO);       
+    };
     public static Optional<ButtonType> exibirAlerta(AlertType tipo, String titulo, String cabecalho, String corpo){
         return createAlert(tipo, titulo, cabecalho, corpo).showAndWait();
     }

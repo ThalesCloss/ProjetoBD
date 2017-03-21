@@ -74,6 +74,10 @@ public class CadastroUsuarioController implements Initializable {
             {
                 PrincipalController.abrirListaUsuario();
             }
+            else{
+                usuarioVO=null;
+                PrincipalController.limparTextField();
+            }
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
         }

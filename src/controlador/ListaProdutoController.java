@@ -29,14 +29,14 @@ import vo.ProdutoVO;
  * @author tcloss
  */
 public class ListaProdutoController implements Initializable {
-    
+
     @FXML
     private TableView<ProdutoVO> tbProdutos;
     private ProdutoNegocio pNegocio;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
     }
 
     public ListaProdutoController() {
@@ -46,21 +46,21 @@ public class ListaProdutoController implements Initializable {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
         }
     }
-    
-    public void atualizarTabela(){
-        try {            
-            TableColumn colunaDescricao =   (TableColumn) tbProdutos.getColumns().get(0);
-            TableColumn colunaMarca     =   (TableColumn) tbProdutos.getColumns().get(1);
-            TableColumn colunaPreco     =   (TableColumn) tbProdutos.getColumns().get(3);
-            TableColumn colunaQtd       =   (TableColumn) tbProdutos.getColumns().get(2);
-            
+
+    public void atualizarTabela() {
+        try {
+            TableColumn colunaDescricao = (TableColumn) tbProdutos.getColumns().get(0);
+            TableColumn colunaMarca = (TableColumn) tbProdutos.getColumns().get(1);
+            TableColumn colunaPreco = (TableColumn) tbProdutos.getColumns().get(3);
+            TableColumn colunaQtd = (TableColumn) tbProdutos.getColumns().get(2);
+
             colunaDescricao.setCellValueFactory(new PropertyValueFactory<>("descricao"));
-            colunaMarca.    setCellValueFactory(new PropertyValueFactory<>("marca"));
-            colunaPreco.    setCellValueFactory(new PropertyValueFactory<>("vlrUnitarioVenda"));
-            colunaQtd.      setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
-            
+            colunaMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
+            colunaPreco.setCellValueFactory(new PropertyValueFactory<>("vlrUnitarioVenda"));
+            colunaQtd.setCellValueFactory(new PropertyValueFactory<>("qtdEstoque"));
+
             tbProdutos.setItems(FXCollections.observableArrayList(pNegocio.todos()));
-            
+
         } catch (NegocioException ex) {
             Alertas.exibirAlerta(Alert.AlertType.ERROR, "Erro", ex.getLocalizedMessage(), ex.getCause().getLocalizedMessage());
         }
@@ -72,8 +72,26 @@ public class ListaProdutoController implements Initializable {
     }
 
     public void btEditarOnAction(ActionEvent e) {
-        PrincipalController.cadastroProdutoCtr.setProdutoVO(tbProdutos.getSelectionModel().getSelectedItem());
-        PrincipalController.abrirCadastroProduto();
+
+        if (tbProdutos.getSelectionModel().getSelectedIndex() != -1) {
+            PrincipalController.cadastroProdutoCtr.setProdutoVO(tbProdutos.getSelectionModel().getSelectedItem());
+            PrincipalController.abrirCadastroProduto();
+        } else {
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Editar", "Nenhum produto selecionado", "Selecione um produto na tabela");
+        }
+    }
+
+    public void btExcluirOnAction(ActionEvent e) {
+        if (tbProdutos.getSelectionModel().getSelectedIndex() != -1) {
+            try{
+                pNegocio.excluirProduto(tbProdutos.getSelectionModel().getSelectedItem());
+            }
+            catch(NegocioException ex){
+                Alertas.exibirAlerta(Alert.AlertType.ERROR,"Excluir", ex.getLocalizedMessage() , ex.getCause().getLocalizedMessage());
+            }
+        } else {
+            Alertas.exibirAlerta(Alert.AlertType.ERROR, "Excluir", "Nenhum produto selecionado", "Selecione um produto na tabela para excluir");
+        }
     }
 
 }

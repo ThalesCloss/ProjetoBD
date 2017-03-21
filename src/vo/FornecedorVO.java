@@ -11,9 +11,21 @@ package vo;
  */
 public class FornecedorVO {
     private int idFornecedor;
-    private String nomeFantasia,cnpj,telefone,email,edereco,cidade,uf;
+    private String nomeFantasia,cnpj,telefone,email,edereco,cidade;
+    private Estados uf;
 
-    public FornecedorVO(int idFornecedor, String nomeFantasia, String cnpj, String telefone, String email, String edereco, String cidade, String uf) {
+    public FornecedorVO() {
+        this.idFornecedor=0;
+        this.nomeFantasia="";
+        this.cnpj="";
+        this.telefone="";
+        this.email="";
+        this.edereco="";
+        this.cidade="";
+        this.uf=null;
+    }
+    
+    public FornecedorVO(int idFornecedor, String nomeFantasia, String cnpj, String telefone, String email, String edereco, String cidade, Estados uf) {
         this.idFornecedor = idFornecedor;
         this.nomeFantasia = nomeFantasia;
         this.cnpj = cnpj;
@@ -21,7 +33,7 @@ public class FornecedorVO {
         this.email = email;
         this.edereco = edereco;
         this.cidade = cidade;
-        this.uf = uf;
+        this.uf=uf;
     }
 
     public int getIdFornecedor() {
@@ -80,13 +92,15 @@ public class FornecedorVO {
         this.cidade = cidade;
     }
 
-    public String getUf() {
+    public Estados getUf() {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUf(Estados uf) {
         this.uf = uf;
     }
+
+    
             
     
 }

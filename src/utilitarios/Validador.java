@@ -34,7 +34,7 @@ public class Validador {
             throw new ValidadorException("CPF Inválido", new ValidadorException("O CPF possui uma sequência de digitos inválida"));
         char[] validar=cpf.toCharArray();
         if(digitoCPFeCNPJ(validar, 10, 8)!=Character.getNumericValue(validar[9]) || digitoCPFeCNPJ(validar, 10, 9)!=Character.getNumericValue(validar[10]))
-            throw new ValidadorException("CPF Inválido", new ValidadorException("Dígito verificador inválido"));
+            throw new ValidadorException("CPF Inválido", new ValidadorException("CPF Inválido"));
         return true;
     }
 
@@ -48,7 +48,7 @@ public class Validador {
         }
         char[] validar = cnpj.toCharArray();
         if (digitoCPFeCNPJ(validar, 9, 11) != Character.getNumericValue(validar[12]) || digitoCPFeCNPJ(validar, 9, 12) != Character.getNumericValue(validar[13])) {
-            throw new ValidadorException("CNPJ Inválido", new ValidadorException("Dígito verificador inválido"));
+            throw new ValidadorException("CNPJ Inválido", new ValidadorException("CNPJ inválido"));
         }
         return true;
     }

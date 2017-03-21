@@ -23,11 +23,11 @@
             <TableColumn prefWidth="146.0" text="Preço" />
         </columns>
       </TableView>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
         <items>
-            <Button mnemonicParsing="false" onAction="#btNovoOnAction" text="Novo" />
+            <Button fx:id="btExcluir" mnemonicParsing="false" onAction="#btExcluirOnAction" text="Excluir" />
           <Button fx:id="btEditar" mnemonicParsing="false" onAction="#btEditarOnAction" text="Editar" />
-            <Button fx:id="btExcluir" mnemonicParsing="false" text="Excluir" />
+            <Button mnemonicParsing="false" onAction="#btNovoOnAction" text="Novo" />
         </items>
       </ToolBar>
       <Label text="Produtos cadastrados">

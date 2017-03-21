@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import vo.Estados;
 import vo.FornecedorVO;
 
 /**
@@ -32,9 +33,9 @@ public class FornecedorDAO extends DAO {
             this.pStatement.setString(4, fornecedorVO.getEmail());
             this.pStatement.setString(5, fornecedorVO.getEdereco());
             this.pStatement.setString(6, fornecedorVO.getCidade());
-            this.pStatement.setString(7, fornecedorVO.getUf());
+            this.pStatement.setString(7, fornecedorVO.getUf().name());
             this.pStatement.execute();
-            return this.pStatement.getGeneratedKeys().getInt(0);
+            return this.pStatement.getGeneratedKeys().getInt(1);
         } catch (SQLException ex) {
             throw new PersistenciaException("Erro ao persistir dados do fornecedor", ex);
         }
@@ -49,7 +50,7 @@ public class FornecedorDAO extends DAO {
             this.pStatement.setString(4, fornecedorVO.getEmail());
             this.pStatement.setString(5, fornecedorVO.getEdereco());
             this.pStatement.setString(6, fornecedorVO.getCidade());
-            this.pStatement.setString(7, fornecedorVO.getUf());
+            this.pStatement.setString(7, fornecedorVO.getUf().name());
             this.pStatement.setInt(8, fornecedorVO.getIdFornecedor());
             this.pStatement.executeUpdate();
         } catch (SQLException ex) {
@@ -81,8 +82,8 @@ public class FornecedorDAO extends DAO {
                                 this.resultSet.getString("email"),
                                 this.resultSet.getString("endereco"),
                                 this.resultSet.getString("cidade"),
-                                this.resultSet.getString("uf"))
-                );
+                                Estados.valueOf(this.resultSet.getString("uf"))
+                        );
             }
             return fornecedores;
         } catch (SQLException ex) {
@@ -91,7 +92,7 @@ public class FornecedorDAO extends DAO {
 
     }
 
-    private List<FornecedorVO> todos() throws PersistenciaException {
+    public List<FornecedorVO> todos() throws PersistenciaException {
         try {
             this.pStatement = this.conexao.getConnection().prepareStatement("SELECT * FROM FORNECEDOR");
             this.resultSet = this.pStatement.executeQuery();

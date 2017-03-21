@@ -6,6 +6,8 @@
 package negocio;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import persistencia.Conexao;
 import persistencia.PersistenciaException;
 import persistencia.ProdutoDAO;
@@ -26,7 +28,7 @@ public class ProdutoNegocio {
         }
     }
     
-    public void inserirUsuario(ProdutoVO produtoVO) throws NegocioException{
+    public void inserirProduto(ProdutoVO produtoVO) throws NegocioException{
         validarProduto(produtoVO);
         try {
             this.produtoDAO.inserirProduto(produtoVO);
@@ -34,7 +36,7 @@ public class ProdutoNegocio {
             throw new NegocioException("Erro ao inserir produto", ex.getCause());
         }
     }
-    public void atualizarUsuario(ProdutoVO produtoVO) throws NegocioException{
+    public void atualizarProduto(ProdutoVO produtoVO) throws NegocioException{
         validarProduto(produtoVO);
         try {
             this.produtoDAO.atualizarProduto(produtoVO);
@@ -82,6 +84,14 @@ public class ProdutoNegocio {
             throw new NegocioException("Erro ao carregar produtos", e.getCause());
         }
         
+    }
+    
+    public void excluirProduto(ProdutoVO produtoVO) throws NegocioException{
+        try {
+            produtoDAO.deletarProdtudo(produtoVO);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Erro ao excluir produto",ex.getCause());
+        }
     }
     
 }
