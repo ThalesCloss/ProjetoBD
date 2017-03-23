@@ -5,11 +5,8 @@
  */
 package controlador;
 
-import com.sun.xml.internal.bind.v2.runtime.property.PropertyFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +17,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import negocio.NegocioException;
 import negocio.ProdutoNegocio;
-import persistencia.PersistenciaException;
 import utilitarios.Alertas;
 import vo.ProdutoVO;
 

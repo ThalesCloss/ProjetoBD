@@ -92,7 +92,6 @@ public class CadastroFornecedorController implements Initializable {
         fornecedorVO.setNomeFantasia(tfNomeFantasia.getText());
         fornecedorVO.setTelefone(tfTelefone.getText());
         try {
-            fNegocio.todos().forEach(action->System.out.println(action.getCnpj()));
             if (fornecedorVO.getIdFornecedor() != 0) {
                 fNegocio.editarFornecedor(fornecedorVO);
             } else {
@@ -115,7 +114,7 @@ public class CadastroFornecedorController implements Initializable {
         this.fornecedorVO = fornecedorVO;
         tfNomeFantasia.setText(fornecedorVO.getNomeFantasia());
         tfCidade.setText(fornecedorVO.getCidade());
-        tfCnpj.setText(fornecedorVO.getCnpj().substring(0, 1)+"."+fornecedorVO.getCnpj().substring(2, 4)+"."+fornecedorVO.getCnpj().substring(5, 7)+"/"+fornecedorVO.getCnpj().substring(8, 11)+"-"+fornecedorVO.getCnpj().substring(12, 13));
+        tfCnpj.setText(fornecedorVO.getCnpj());
         tfEmail.setText(fornecedorVO.getEmail());
         tfEndereco.setText(fornecedorVO.getEdereco());
         tfTelefone.setText(fornecedorVO.getTelefone());

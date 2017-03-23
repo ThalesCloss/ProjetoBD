@@ -3,17 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/CadastroUsuarioController.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/utilitarios/ValidadorException.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/utilitarios/Validador.java</file>
             <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/persistencia/FornecedorDAO.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/CadastroFornecedorController.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/vo/FornecedorVO.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/ListaProdutoController.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/PrincipalController.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/test/persistencia/FornecedorDAOTest.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/negocio/FornecedorNegocio.java</file>
-            <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/vo/Estados.java</file>
             <file>file:/home/tcloss/Documentos/IFMT/Banco%20de%20dados/ProjetoBD/src/controlador/CadastroProdutoController.java</file>
         </group>
     </open-files>

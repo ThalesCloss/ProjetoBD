@@ -32,13 +32,15 @@ public class PrincipalController implements Initializable {
     private GridPane painel;
     private static Pane sPainel;
     @FXML
-    private static Parent cadastroUsuario, listaUsuario, listaProduto, cadastroProduto, cadastroFornecedor;
+    private static Parent cadastroUsuario, listaUsuario, listaProduto, cadastroProduto, cadastroFornecedor,listaFornecedor,cadastroPedido;
     private FXMLLoader fxControlador;
     public static CadastroUsuarioController cadastroUsuarioCtr;
     private static ListaUsuarioController listaUsuarioCtr;
     public static CadastroProdutoController cadastroProdutoCtr;
     public static ListaProdutoController listaProdutoCtr;
-
+    public static CadastroFornecedorController cadastroFornecedorCtr;
+    public static ListaFornecedorController listaFornecedorCtr;
+    
     public PrincipalController() {
         try {
             fxControlador = new FXMLLoader(getClass().getResource("../view/usuario/cadastro.fxml"));
@@ -59,6 +61,14 @@ public class PrincipalController implements Initializable {
 
             fxControlador = new FXMLLoader(getClass().getResource("../view/fornecedor/cadastro.fxml"));
             cadastroFornecedor = fxControlador.load();
+            cadastroFornecedorCtr=fxControlador.getController();
+            
+            fxControlador=new FXMLLoader(getClass().getResource("../view/fornecedor/lista.fxml"));
+            listaFornecedor=fxControlador.load();
+            listaFornecedorCtr=fxControlador.getController();
+            
+            fxControlador=new FXMLLoader(getClass().getResource("../view/pedido/cadastro.fxml"));
+            cadastroPedido=fxControlador.load();
 
         } catch (IOException ex) {
             System.out.println(ex);
@@ -80,16 +90,26 @@ public class PrincipalController implements Initializable {
     }
 
     public void btFornecedorOnAction(ActionEvent e) {
-        abrirCadastroFornecedor();
+        abrirListaFornecedor();
+    }
+    public void btPedidoOnAction(ActionEvent e){
+        abrirCadastroPedido();
     }
 
     private static void carregarTela(Parent tela) {
         sPainel.getChildren().clear();
         sPainel.getChildren().add(tela);
     }
+    public static void abrirCadastroPedido(){
+        carregarTela(cadastroPedido);
+    }
 
     public static void abrirCadastroFornecedor() {
         carregarTela(cadastroFornecedor);
+    }
+    public static void abrirListaFornecedor(){
+        listaFornecedorCtr.atualizarTabela();
+        carregarTela(listaFornecedor);
     }
 
     public static void abrirListaUsuario() {

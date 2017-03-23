@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import vo.Estados;
 import vo.FornecedorVO;
 
@@ -73,17 +71,20 @@ public class FornecedorDAO extends DAO {
         try {
             List<FornecedorVO> fornecedores = new ArrayList<>();
             while (this.resultSet.next()) {
+                String cAux = this.resultSet.getString("cnpj");
                 fornecedores.add(
                         new FornecedorVO(
                                 this.resultSet.getInt("id_fornecedor"),
                                 this.resultSet.getString("nome_fantasia"),
-                                this.resultSet.getString("cnpj"),
+                                cAux.substring(0, 2) + "." + cAux.substring(2, 5) + "." + cAux.substring(5, 8) + "/" + cAux.substring(8, 12) + "-" + cAux.substring(12, 14),
                                 this.resultSet.getString("telefone"),
                                 this.resultSet.getString("email"),
                                 this.resultSet.getString("endereco"),
                                 this.resultSet.getString("cidade"),
                                 Estados.valueOf(this.resultSet.getString("uf"))
-                        );
+                        )
+                );
+                        
             }
             return fornecedores;
         } catch (SQLException ex) {
@@ -91,6 +92,8 @@ public class FornecedorDAO extends DAO {
         }
 
     }
+    
+    
 
     public List<FornecedorVO> todos() throws PersistenciaException {
         try {

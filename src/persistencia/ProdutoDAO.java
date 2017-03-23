@@ -23,14 +23,14 @@ public class ProdutoDAO extends DAO {
     
     public ProdutoVO inserirProduto(ProdutoVO produtoVO) throws PersistenciaException{
         try {
-            this.pStatement=this.conexao.getConnection().prepareStatement("INSERT INTO PRODUTO(descricao,marca,qtd_estoque,vlt_unitario_venda,vlr_unitario_compra) VALUES(?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+            this.pStatement=this.conexao.getConnection().prepareStatement("INSERT INTO PRODUTO(descricao,marca,qtd_estoque,vlr_unitario_venda,vlr_unitario_compra) VALUES(?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
             this.pStatement.setString(1, produtoVO.getDescricao());
             this.pStatement.setString(2, produtoVO.getMarca());
             this.pStatement.setInt(3, produtoVO.getQtdEstoque());
             this.pStatement.setDouble(4, produtoVO.getVlrUnitarioVenda());
             this.pStatement.setDouble(5, produtoVO.getVlrUnitarioCompra());
             this.pStatement.execute();
-            produtoVO.setIdProduto(this.pStatement.getGeneratedKeys().getInt(0));
+            produtoVO.setIdProduto(this.pStatement.getGeneratedKeys().getInt(1));
             return produtoVO;
         } catch (SQLException ex) {
             throw new PersistenciaException("Erro ao inserir na camada de persistência", ex);
@@ -39,7 +39,7 @@ public class ProdutoDAO extends DAO {
     
     public void atualizarProduto(ProdutoVO produtoVO) throws PersistenciaException{
         try {
-            this.pStatement=this.conexao.getConnection().prepareStatement("UPDATE PRODUTO SET descricao=?,marca=?,qtd_estoque=?,vlr_unitario_venda=?,vlr_unitario_compra where id_produto=?");
+            this.pStatement=this.conexao.getConnection().prepareStatement("UPDATE PRODUTO SET descricao=?,marca=?,qtd_estoque=?,vlr_unitario_venda=?,vlr_unitario_compra=? where id_produto=?");
             this.pStatement.setString(1, produtoVO.getDescricao());
             this.pStatement.setString(2, produtoVO.getMarca());
             this.pStatement.setInt(3, produtoVO.getQtdEstoque());

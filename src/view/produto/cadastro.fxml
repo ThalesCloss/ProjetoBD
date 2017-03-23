@@ -62,15 +62,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="tfVlrVenda" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="124.0" />
+                  <TextField fx:id="tfVlrVenda" maxWidth="1.7976931348623157E308" onKeyReleased="#onMoneyPressKey" prefHeight="25.0" prefWidth="124.0" />
                   <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="35.0" prefWidth="145.0" text="Valor de compra" GridPane.columnIndex="1" />
-                  <TextField fx:id="tfVlrCompra" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="2" />
+                  <TextField fx:id="tfVlrCompra" maxWidth="1.7976931348623157E308" onKeyReleased="#onMoneyPressKey" prefHeight="25.0" prefWidth="124.0" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <HBox alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <Button mnemonicParsing="false" onAction="#btGravarOnAction" text="Gravar" />
-                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button mnemonicParsing="false" onAction="#btCancelarOnAction" text="Cancelar" />
                </children>
             </HBox>
          </children>
